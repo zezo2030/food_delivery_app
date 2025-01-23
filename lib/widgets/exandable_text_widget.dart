@@ -21,8 +21,8 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+
     if (widget.text.length > textHeight) {
       firstHalf = widget.text.substring(0, textHeight.toInt());
       secondHalf =
@@ -37,10 +37,17 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: secondHalf.isEmpty
-          ? SmallText(text: firstHalf)
+          ? SmallText(
+              size: Dimensions.fontSize16,
+              height: 1.5,
+              color: AppColors.paraColor,
+              text: firstHalf)
           : Column(
               children: [
                 SmallText(
+                    size: Dimensions.fontSize16,
+                    height: 1.5,
+                    color: AppColors.paraColor,
                     text: hiddenText
                         ? ("$firstHalf...")
                         : (firstHalf + secondHalf)),
@@ -54,6 +61,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                     children: [
                       SmallText(
                           text: hiddenText ? "show more" : "show less",
+                          size: Dimensions.fontSize16,
                           color: AppColors.mainColor),
                       Icon(
                         hiddenText

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/popular_product_controller.dart';
+import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimension.dart';
 import 'package:food_delivery_app/widgets/app_column.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
 import 'package:food_delivery_app/widgets/exandable_text_widget.dart';
-import 'package:food_delivery_app/widgets/icon_and_text_widget.dart';
-import 'package:food_delivery_app/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetails extends StatelessWidget {
-  const PopularFoodDetails({super.key});
+  int pageId;
+  PopularFoodDetails({super.key , required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -26,7 +30,7 @@ class PopularFoodDetails extends StatelessWidget {
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/image/food0.png'),
+                  image: NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -40,7 +44,11 @@ class PopularFoodDetails extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -67,16 +75,17 @@ class PopularFoodDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Chinese Side",
+                    text: product.name,
                   ),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: "Intoduce"),
                   // expandable text widget
+                  SizedBox(height: Dimensions.height20),
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            "lkjhkh khkshkf sdhfksh fkjhskhf klh klsdhfklh sfkjh skajfh ksh fkhsafkhksahfkhsakfj skfh kls fkj safkjh ks fkh kjshf dkj  ksha skhf klsha fklhasklfhklajshf klhsa fkljhs afkljh skjhfklsajhflkjsahf kljsh fklsh fklas fklhs afdlkh kljh faklh alkshf klash dfklh salkfh sklfh dddiglh dsfkgdlf;k gjkldfsjg l;djffgl;kjdff gl;djffg l;kdffj g;ldksffj gl;kdsfkj gl;kdffjg l;kdffjg l;dkffjg l;dsfj gl;dskj gl;kdfj glk;jd glk;jdf sl;gj dsl;gj dlfk;j gldk;ffj gl;kdff jgl;dfsjf gl;djf glk;dj gl;d fjglkdjf glkdjf fl;gkj dsflkgj df;slfgj dl;ffgj lkjhkh khkshkf sdhfksh fkjhskhf klh klsdhfklh sfkjh skajfh ksh fkhsafkhksahfkhsakfj skfh kls fkj safkjh ks fkh kjshf dkj  ksha skhf klsha fklhasklfhklajshf klhsa fkljhs afkljh skjhfklsajhflkjsahf kljsh fklsh fklas fklhs afdlkh kljh faklh alkshf klash dfklh salkfh sklfh dddiglh dsfkgdlf;k gjkldfsjg l;djffgl;kjdff gl;djffg l;kdffj g;ldksffj gl;kdsfkj gl;kdffjg l;kdffjg l;dkffjg l;dsfj gl;dskj gl;kdfj glk;jd glk;jdf sl;gj dsl;gj dlfk;j gldk;ffj gl;kdff jgl;dfsjf gl;djf glk;dj gl;d fjglkdjf glkdjf fl;gkj dsflkgj df;slfgj dl;ffgj lkjhkh khkshkf sdhfksh fkjhskhf klh klsdhfklh sfkjh skajfh ksh fkhsafkhksahfkhsakfj skfh kls fkj safkjh ks fkh kjshf dkj  ksha skhf klsha fklhasklfhklajshf klhsa fkljhs afkljh skjhfklsajhflkjsahf kljsh fklsh fklas fklhs afdlkh kljh faklh alkshf klash dfklh salkfh sklfh dddiglh dsfkgdlf;k gjkldfsjg l;djffgl;kjdff gl;djffg l;kdffj g;ldksffj gl;kdsfkj gl;kdffjg l;kdffjg l;dkffjg l;dsfj gl;dskj gl;kdfj glk;jd glk;jdf sl;gj dsl;gj dlfk;j gldk;ffj gl;kdff jgl;dfsjf gl;djf glk;dj gl;d fjglkdjf glkdjf fl;gkj dsflkgj df;slfgj dl;ffgj lkjhkh khkshkf sdhfksh fkjhskhf klh klsdhfklh sfkjh skajfh ksh fkhsafkhksahfkhsakfj skfh kls fkj safkjh ks fkh kjshf dkj  ksha skhf klsha fklhasklfhklajshf klhsa fkljhs afkljh skjhfklsajhflkjsahf kljsh fklsh fklas fklhs afdlkh kljh faklh alkshf klash dfklh salkfh sklfh dddiglh dsfkgdlf;k gjkldfsjg l;djffgl;kjdff gl;djffg l;kdffj g;ldksffj gl;kdsfkj gl;kdffjg l;kdffjg l;dkffjg l;dsfj gl;dskj gl;kdfj glk;jd glk;jdf sl;gj dsl;gj dlfk;j gldk;ffj gl;kdff jgl;dfsjf gl;djf glk;dj gl;d fjglkdjf glkdjf fl;gkj dsflkgj df;slfgj dl;ffgj",
+                        text:product.description,
+
                       ),
                     ),
                   ),
