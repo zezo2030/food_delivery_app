@@ -108,7 +108,7 @@ class RecommendedFoodDetails extends StatelessWidget {
                   iconColor: Colors.white,
                 ),
                 BigText(
-                  text: "\$12.88" "  X" " 0",
+                  text: "\$ ${product.price}" "  X" " 0",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.fontSize26,
                 ),
@@ -162,8 +162,9 @@ class RecommendedFoodDetails extends StatelessWidget {
                     color: AppColors.mainColor,
                     borderRadius: BorderRadius.circular(Dimensions.radius15),
                   ),
-                  child:
-                      BigText(text: "\$ 12 | Add to cart", color: Colors.white),
+                  child: BigText(
+                      text: "\$ ${product.price} | Add to cart",
+                      color: Colors.white),
                 ),
               ],
             ),
