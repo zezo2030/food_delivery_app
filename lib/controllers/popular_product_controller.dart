@@ -11,6 +11,7 @@ class PopularProductController extends GetxController {
 
   List<dynamic> _popularProductList = [];
   List<dynamic> get popularProductList => _popularProductList;
+  late CartController _cart;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -68,9 +69,12 @@ class PopularProductController extends GetxController {
   void initProduct(CartController cart) {
     _quantity = 0;
     _itemCart = 0;
+    _cart = cart;
   }
 
   void addItem(
     ProductModel product,
-  ) {}
+  ) {
+    _cart.addItem(product, quantity);
+  }
 }
